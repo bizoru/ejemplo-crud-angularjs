@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="/node_modules/angular/angular.js"></script>
+  <script src="app.js"></script>
+</head>
+
+<body ng-app="myApp">
+  <h1> CRUD Basico </h1>
+  <div ng-controller="myController">
+    <!-- Tabla para mostrar los resultados -->
+    <table border data-ng-init="actualizar()">
+      <tr>
+        <th>Id</th>
+        <th>Direccion</th>
+        <th>Email</th>
+        <th>Usuario</th>
+        <th> Acciones </th>
+      </tr>
+      <tr ng-repeat="usuario in usuarios">
+        <td>{{ usuario.Id }}</td>
+        <td>{{ usuario.Profile.Address }}</td>
+        <td>{{ usuario.Profile.Email }}</td>
+        <td>{{ usuario.Username }}</td>
+        <td>
+          <a href="#" ng-click="borrar(usuario)">Borrar</a>
+          <a href="#" ng-click="ver(usuario)">Ver</a>
+        </td>
+      </tr>
+    </table>
+    <a href="#" ng-click="crear()">Crear</a>
+    <br>
+
+    <form ng-show="registro" ng-submit="actualizarUsuario()">
+      Direccion <input type="text" ng-model="usuario.Profile.Address">
+      Email <input type="text" ng-model="usuario.Profile.Email">
+      Usuario <input type="text" ng-model="usuario.Username">
+       <button type="submit">{{ accion }}</button>
+       <a href="#" ng-click="ocultar()">Cancelar</a>
+    </form>
+  </div>
+</body>
+
+</html>
